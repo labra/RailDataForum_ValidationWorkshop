@@ -1,0 +1,9 @@
+PREFIX : <http://example.org/>
+
+SELECT ?person ?name ?country WHERE {
+  ?person a :Human ;
+    :name ?name ;
+    :birthDate ?birthDate ;
+    :birthPlace ?birthPlace .
+  ?birthPlace :country ?country
+}

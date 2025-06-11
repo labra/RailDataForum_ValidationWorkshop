@@ -1,0 +1,22 @@
+@prefix : <http://example.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+:london :country :UK ;
+	a :City , :Metropolis .
+:jose :name "Jose" ;
+	:birthPlace :Oviedo .
+:CERN a :Organization .
+:knows rdfs:range :Human ;
+	rdfs:domain :Human .
+:Human rdfs:subClassOf :HomoSapiens .
+:Oviedo :country :Spain ;
+	a :City .
+:birthPlace rdfs:range :Place ;
+	rdfs:domain :Person .
+:timbl :name "Tim Berners-Lee" ;
+	:knows :jose ;
+	:birthPlace :london ;
+	:birthDate "1955-06-08"^^xsd:date ;
+	:employer :CERN ;
+	a :Human .

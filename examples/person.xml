@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<Person xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xsi:schemaLocation="http://www.w3.org/2001/XMLSchema person.xsd">
+ <name>Tim Berners-Lee</name>
+ <birthPlace>
+   <name>London</name>
+   <country>UK</country>
+ </birthPlace>
+ <birthDate>1955-06-08</birthDate>
+ <employer>
+   <name>CERN</name>
+ </employer>
+ <knows>
+  <name>Jose</name>
+  <birthPlace>
+    <name>Oviedo</name>
+    <country>Spain</country>
+   </birthPlace> 
+  </knows>
+</Person>

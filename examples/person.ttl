@@ -1,0 +1,22 @@
+prefix : <http://example.org/>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+:timbl a :Human ;
+       :name       "Tim Berners-Lee" ;
+       :birthPlace :london ;
+       :birthDate  "1955-06-08"^^xsd:date ;
+       :employer   :CERN ;
+       :knows     :jose .
+
+:london a :City, :Metropolis ;
+        :country :UK .
+
+:CERN a :Organization ;
+      :name "CERN"    .
+
+:jose :name       "Jose" ;
+      :birthPlace :Oviedo .
+
+:Oviedo a :City ;
+        :country :Spain .

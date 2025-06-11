@@ -1,0 +1,20 @@
+PREFIX : <http://example.org/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?person WHERE {
+  ?person a :Human ;
+  {
+    SELECT ?person ?name WHERE {
+    ?person :name ?name .
+    FILTER (!isLiteral(?name) || datatype(?name) != xsd:string)
+    } 
+  } UNION {
+    SELECT ?person (COUNT(?name) AS ?nameCount)
+    WHERE {
+        ?person a :Human .
+        OPTIONAL { ?person :name ?name . }
+    }
+    GROUP BY ?person
+    HAVING (COUNT(?name) != 1) 
+  }
+}

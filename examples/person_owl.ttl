@@ -1,0 +1,21 @@
+prefix : <http://example.org/> 
+prefix dct: <http://purl.org/dc/terms/> 
+prefix owl: <http://www.w3.org/2002/07/owl#> 
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+
+: a owl:Ontology .
+
+:Human a owl:Class ;
+       rdfs:subClassOf :HomoSapiens .
+:HomoSapiens a owl:Class .
+
+:name a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain :Human ;
+    rdfs:range  xsd:string .
+
+:knows a owl:ObjectProperty,
+       rdfs:domain :Person ;
+       rdfs:range  :Person .
+
