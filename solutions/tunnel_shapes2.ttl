@@ -1,0 +1,29 @@
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
+prefix era: <http://www.era.europa.eu/ontology#>
+prefix eu: <http://publications.europa.eu/resource/authority/country/>
+prefix ccc: <http://www.era.europa.eu/ontology/company-code-categories#>
+prefix sh: <http://www.w3.org/ns/shacl#>
+prefix : <http://example.org/shapes#>
+
+:TunnelShape a sh:NodeShape ;
+  sh:targetClass era:Tunnel ;
+  sh:sparql [
+        sh:message "Tunnel identification is not unique" ;
+        sh:select """
+            prefix era: <http://www.era.europa.eu/ontology#>
+            SELECT DISTINCT $this ?value ?other WHERE {
+                $this era:tunnelIdentification ?value ;
+                      era:inCountry ?thisCountry .
+                ?other era:tunnelIdentification ?value ;
+                       era:inCountry ?otherCountry .
+                FILTER (?other != $this && 
+                        ?thisCountry = ?otherCountry) .
+                ?other a era:Tunnel .
+            }
+            """
+   ] .
+

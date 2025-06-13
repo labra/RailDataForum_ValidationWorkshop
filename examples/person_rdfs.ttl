@@ -25,15 +25,15 @@ prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 :Oviedo a :City ;
         :country :Spain .
 
-:bad_name_integer a :Human ;
+:alice a :Human ;
       :name 234 .
 
-:bad_no_name a :Human ;
+:bob a :Human ;
+     :name "Bob" , "Robert" .
+
+:dave a :Human ;
      :birthPlace :london .
 
-:bad_2_names a :Human ;
-     :name "John" , "Jane" .
-
-:bad_knows_cern a :Human ;
+:carol a :Human ;
      :name "John" ;
      :knows :CERN .

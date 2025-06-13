@@ -1,0 +1,77 @@
+PREFIX :          <http://example.org/>
+PREFIX dash:      <http://datashapes.org/dash#>
+PREFIX era:       <http://data.europa.eu/949/>
+PREFIX era-sh:    <http://data.europa.eu/949/shapes/>
+PREFIX era-sn:    <http://data.europa.eu/949/concepts/sol-natures/>
+PREFIX eu:        <http://publications.europa.eu/resource/authority/country/>
+PREFIX ex:        <http://example.org/ns#>
+PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
+PREFIX graphql:   <http://datashapes.org/graphql#>
+PREFIX opType:    <http://data.europa.eu/949/concepts/op-type/>
+PREFIX owl:       <http://www.w3.org/2002/07/owl#>
+PREFIX rdf:       <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:      <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sh:        <http://www.w3.org/ns/shacl#>
+PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
+PREFIX swa:       <http://topbraid.org/swa#>
+PREFIX tosh:      <http://topbraid.org/tosh#>
+PREFIX wgs:       <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX xsd:       <http://www.w3.org/2001/XMLSchema#>
+
+[ rdf:type     sh:ValidationReport;
+  sh:conforms  false;
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  :p1;
+                 sh:resultMessage              "opName (1.2.0.0.0.1): There has to be exactly one opName, and it must be represented as a String."@en;
+                 sh:resultPath                 era:opName;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:DatatypeConstraintComponent;
+                 sh:sourceShape                era-sh:OpName;
+                 sh:value                      "Bjornfjell stasjon"@no
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  :p1;
+                 sh:resultMessage              "hasPart from an operational point : The Operational Point may have a siding (hasPart) reference that is a Siding object or a track (hasPart) reference that is a Track object. This error may be due to a hasPart relationship from an operational point that is not a Siding nor a Track."@en;
+                 sh:resultPath                 era:hasPart;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:NodeKindConstraintComponent;
+                 sh:sourceShape                era-sh:HasPartOP;
+                 sh:value                      _:b0
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  :p1;
+                 sh:resultMessage              "hasPart from an operational point : The Operational Point may have a siding (hasPart) reference that is a Siding object or a track (hasPart) reference that is a Track object. This error may be due to a hasPart relationship from an operational point that is not a Siding nor a Track."@en;
+                 sh:resultPath                 era:hasPart;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:NodeKindConstraintComponent;
+                 sh:sourceShape                era-sh:HasPartOP;
+                 sh:value                      "NO2400-24060_KO-HEN-000057"
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  :p1;
+                 sh:resultMessage              "hasPart from an operational point : The Operational Point may have a siding (hasPart) reference that is a Siding object or a track (hasPart) reference that is a Track object. This error may be due to a hasPart relationship from an operational point that is not a Siding nor a Track."@en;
+                 sh:resultPath                 era:hasPart;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:OrConstraintComponent;
+                 sh:sourceShape                era-sh:HasPartOP;
+                 sh:value                      _:b0
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  :p1;
+                 sh:resultMessage              "hasPart from an operational point : The Operational Point may have a siding (hasPart) reference that is a Siding object or a track (hasPart) reference that is a Track object. This error may be due to a hasPart relationship from an operational point that is not a Siding nor a Track."@en;
+                 sh:resultPath                 era:hasPart;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:OrConstraintComponent;
+                 sh:sourceShape                era-sh:HasPartOP;
+                 sh:value                      "NO2400-24060_KO-HEN-000057"
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  :p1;
+                 sh:resultMessage              "uopid (1.2.0.0.0.2): This error is due to having more than one op id, having a value that is not a string, or having a value that does not follow the pattern where the first part ‘AA’ is the country code in two-letter system of ISO and the second part is the alphanumeric OP code within the MS."@en;
+                 sh:resultPath                 era:uopid;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:PatternConstraintComponent;
+                 sh:sourceShape                era-sh:UopidP;
+                 sh:value                      "N2400-N24060"
+               ]
+] .

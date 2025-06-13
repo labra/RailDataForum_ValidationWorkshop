@@ -1,0 +1,30 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix : <http://example.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix eu: <http://publications.europa.eu/resource/authority/country/> .
+@prefix opType: <http://data.europa.eu/949/concepts/op-type/> .
+
+:p1 a era:OperationalPoint ;
+  rdfs:label "Bjornfjell stasjon";
+  era:opName "Bjornfjell stasjon"@no ;  
+  era:inCountry eu:NOR ;
+  era:opType opType:10 ;
+  era:uopid "N2400-N24060" ;
+  era:hasPart [ 
+    a era:Track ;
+    era:imCode "0076" 
+  ] ;
+  era:hasPart "NO2400-24060_KO-HEN-000057" ;
+  era:lineReference [
+    a era:LineReference ;
+    rdfs:label "40.420 NO-BN-01" ;
+    era:kilometer "40.42"^^xsd:double ;
+  ] .

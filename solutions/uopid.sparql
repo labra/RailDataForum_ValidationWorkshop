@@ -1,0 +1,10 @@
+# uopid (1.2.0.0.0.2):  The OperationalPoint {$this} with label {?opLabel} 
+# does not have a value for uopid.
+PREFIX era: <http://data.europa.eu/949/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT DISTINCT $this ?opLabel ?propertyValue 		
+WHERE {
+ OPTIONAL {$this rdfs:label ?opLabel} .
+ FILTER NOT EXISTS {$this era:uopid ?propertyValue} .
+ # FILTER NOT EXISTS {$this era:referenceBorderPoint ?borderOP } .
+}

@@ -1,0 +1,60 @@
+x@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+
+
+era-sh:SectionOfLineShape  
+    a sh:NodeShape ;
+    sh:targetClass era:SectionOfLine ;
+    sh:property era-sh:SolNature ;
+    sh:property era-sh:OpStart ;
+    sh:property era-sh:OpEnd ;
+    sh:property era-sh:SolLength .
+
+era-sh:SolNature
+    a sh:PropertyShape ;
+    rdfs:comment "General description: Validation: If the value of this parameter is 'Link', then for all tracks belonging to this SoL, all the parameters of the following groups of parameters are not applicable: 1.1.1.1 Infrastructure subsystem, 1.1.1.2 Energy subsystem, 1.1.1.3 Control-command and signalling subsystem. "@en ;
+    sh:path era:solNature ; 
+    sh:minCount 1;
+    sh:maxCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:severity sh:Violation ;
+    sh:message "SoL nature (1.1.0.0.0.6): Either no SOL nature is specified for this SoL, or more than one SoL nature has been specified."@en .
+
+era-sh:SolLength
+    a sh:PropertyShape ;
+    sh:path era:lengthOfSectionOfLine ; 
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:double ;
+    sh:severity sh:Violation ;
+    sh:message "lengthOfSectionOfLine (1.1.0.0.0.5): Each SoL has exactly one length. This error is due to that either there is no length for the specified SoL, more than one length has been defined, or the datatype cannot be converted into an xsd:double."@en .
+
+era-sh:OpStart
+    a sh:PropertyShape ;
+    rdfs:comment "Each SoL may have only one start OP, and each OP has unique OP ID within the MS. The “uniqueOPID” is defined in parameter 1.2.0.0.0.2. Each SoL has the principal direction of the traffic defined by increasing kilometres running from the start OP to the end OP. That is why the start OP is always located at lowest kilometre of the line within the SoL. Data collected in the UK in miles will be transformed to km for uploading to the RINF application. The OP ID must exist in the MS file of RINF. The value of this parameter must be different from 1.1.0.0.0.4. No validation will be performed by RINF application regarding which is the start and which the end OP. This requires national verification. "@en ;
+    sh:path era:opStart ; 
+    sh:disjoint era:opEnd ; # value must be different to opEnd
+    # sh:minCount 1 ; checked in era-sh:opStartExists
+    sh:maxCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:severity sh:Violation ;
+    sh:message "opStart (1.1.0.0.0.3): There must be at most one OP start for this section of line and it must be different from the OP end."@en .
+
+era-sh:OpEnd
+    a sh:PropertyShape ;
+    rdfs:comment "Each SoL may have only one end OP, and each OP has unique OP ID within the MS. The “uniqueOPID” is defined in parameter 1.2.0.0.0.2. Each SoL has the principal direction of the traffic defined by increasing kilometres running from the start OP to the end OP. That is why the start OP is always located at lowest kilometre of the line within the SoL. Data collected in the UK in miles will be transformed to km for uploading to the RINF application. The OP ID must exist in the MS file of RINF. The value of this parameter must be different from 1.1.0.0.0.3. No validation will be performed by RINF application regarding which is the start and which the end OP. This requires national verification. "@en ;
+    sh:path era:opEnd ; 
+    sh:disjoint era:opStart ; # value must be different to opStart
+  #  sh:minCount 1 ; #checked in era-sh:OpEndExists
+    sh:maxCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:severity sh:Violation ;
+    sh:message "opEnd (1.1.0.0.0.4): There must be at most one OP end for this section of line and it must be different from the OP start."@en .

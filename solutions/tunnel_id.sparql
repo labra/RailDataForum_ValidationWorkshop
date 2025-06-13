@@ -1,0 +1,10 @@
+prefix era: <http://www.era.europa.eu/ontology#>
+SELECT DISTINCT $this ?value ?other WHERE {
+ $this era:tunnelIdentification ?value ;
+       era:inCountry ?thisCountry .
+ ?other era:tunnelIdentification ?value ;
+        era:inCountry ?otherCountry .
+ FILTER (?other != $this && 
+         ?thisCountry = ?otherCountry) .
+ ?other a era:Tunnel .
+}

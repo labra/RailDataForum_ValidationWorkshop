@@ -1,0 +1,67 @@
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
+prefix era: <http://www.era.europa.eu/ontology#>
+prefix eu: <http://publications.europa.eu/resource/authority/country/>
+prefix ccc: <http://www.era.europa.eu/ontology/company-code-categories#>
+prefix sh: <http://www.w3.org/ns/shacl#>
+prefix : <http://example.org/shapes#>
+
+:TunnelShape a sh:NodeShape ;
+  sh:targetClass era:Tunnel ;
+  sh:property [
+    sh:path era:lengthOfTunnel ;
+    sh:datatype xsd:double ;
+    sh:minInclusive "0.0"^^xsd:double ;
+    sh:maxInclusive "10000.0"^^xsd:double ;
+    sh:name "Length of Tunnel" ;
+    sh:description "The length of the tunnel in meters." ;
+  ] ;
+  sh:property [
+    sh:path era:imCode ;
+    sh:datatype xsd:string;
+    sh:pattern "^[A-Z|a-z|0-9]{4}$" ;
+    sh:name "Infrastructure Manager Code" ;
+    sh:description "A unique code for the infrastructure manager responsible for the tunnel." ;
+  ] ;
+  sh:property [
+    sh:path era:inCountry ;
+    sh:nodeKind sh:IRI ;
+    sh:name "Country" ;
+    sh:description "The country where the tunnel is located." ;
+  ] ;
+  # We don't check that the identifier is unique
+  sh:property [
+    sh:path era:tunnelIdentification ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+    sh:name "Tunnel Identification" ;
+    sh:description "A unique identifier for the tunnel." ;
+  ] ;
+  # This is interesting because the example fails (it has no declaration of emergency plan)
+  sh:property [
+    sh:path era:hasEmergencyPlan ;
+    sh:datatype xsd:boolean ;
+    sh:name "Emergency plan" ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:description "Declaration of whether an emergency plan exists for the tunnel." ;
+  ] ;
+ sh:sparql [
+        sh:message "Tunnel identification is not unique" ;
+        sh:select """
+            prefix era: <http://www.era.europa.eu/ontology#>
+            SELECT DISTINCT $this ?value ?other WHERE {
+                $this era:tunnelIdentification ?value ;
+                      era:inCountry ?thisCountry .
+                ?other era:tunnelIdentification ?value ;
+                       era:inCountry ?otherCountry .
+                FILTER (?other != $this && 
+                        ?thisCountry = ?otherCountry) .
+                ?other a era:Tunnel .
+            }
+            """
+   ] .
+

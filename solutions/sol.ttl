@@ -1,0 +1,82 @@
+prefix : <http://example.org/> 
+prefix sh: <http://www.w3.org/ns/shacl#> 
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+prefix era: <http://data.europa.eu/949/> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> 
+prefix geosparql: <http://www.opengis.net/ont/geosparql#> 
+prefix rinf: <http://data.europa.eu/949/concepts/sol-natures/rinf/>
+
+:sol1 a era:SectionOfLine ;
+    era:solNature rinf:20 ;
+    era:lengthOfSectionOfLine "40.42"^^xsd:double ;
+    era:opStart :p0 ;
+    era:opEnd :p1 .
+
+:sol2 a era:SectionOfLine ; 
+    era:solNature rinf:20 ;
+    era:lengthOfSectionOfLine "1.49"^^xsd:double ;
+    era:opStart :p1 ; 
+    era:opEnd :p2 .
+
+:sol3 a era:SectionOfLine ; 
+    era:solNature rinf:20 ;
+    era:lengthOfSectionOfLine "0.75"^^xsd:double ;
+    era:opStart :p2 ;
+    era:opEnd :p3 .
+
+:sol4 a era:SectionOfLine ; 
+    era:solNature rinf:20 ;
+    era:lengthOfSectionOfLine "0.38"^^xsd:double ;
+    era:opStart :p3 ;
+    era:opEnd :p4 .
+
+:sol5 a era:SectionOfLine ; 
+    era:solNature rinf:20 ;
+    era:lengthOfSectionOfLine "2.96"^^xsd:double ;
+    era:opStart :p4 ;
+    era:opEnd :p5 .
+
+:sol6 a era:SectionOfLine ; 
+    era:solNature rinf:20 ;
+    era:lengthOfSectionOfLine "4"^^xsd:double ;
+    era:opStart :p5 ;
+    era:opEnd :p6 .
+
+:sol7 a era:SectionOfLine ; 
+    era:solNature rinf:20 ;
+    era:lengthOfSectionOfLine "3"^^xsd:double ;
+    era:opStart :p6 ;
+    era:opEnd :p7 .
+
+:sol8 a era:SectionOfLine ; 
+    era:solNature rinf:20 ;
+    era:lengthOfSectionOfLine "12"^^xsd:double ;
+    era:opStart :p7 ;
+    era:opEnd :p8 .
+
+:sol9 a era:SectionOfLine ; 
+    era:solNature rinf:20 ;
+    era:lengthOfSectionOfLine "5"^^xsd:double ;
+    era:opStart :p8 ;
+    era:opEnd :p9 .
+
+:sol10 a era:SectionOfLine ; 
+    era:solNature rinf:20 ;
+    era:lengthOfSectionOfLine "101.78"^^xsd:double ;
+    era:opStart :p9 ;
+    era:opEnd :p10 .
+
+:p0 rdfs:label "Narvik" .
+:p1 rdfs:label "Bjørnfjell" .
+:p2 rdfs:label "Gamle Riksgresen" .
+:p3 rdfs:label "Riksgrensen" .
+:p4 rdfs:label "Riksgrensen block post" .
+:p5 rdfs:label "Katterjakk" .
+:p6 rdfs:label "Vassijaure" .
+:p7 rdfs:label "Laktatjakka" .
+:p8 rdfs:label "Tornehamn" .
+:p9 rdfs:label "Björkliden" .
+:p10 rdfs:label "Kiruna" .

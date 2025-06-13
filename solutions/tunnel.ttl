@@ -1,0 +1,52 @@
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
+prefix era: <http://www.era.europa.eu/ontology#>
+prefix eu: <http://publications.europa.eu/resource/authority/country/>
+prefix ccc: <http://www.era.europa.eu/ontology/company-code-categories#>
+prefix sh: <http://www.w3.org/ns/shacl#>
+prefix : <http://example.org/shapes#>
+prefix era2: <http://data.europa.eu/949/>
+
+_:t1 rdf:type    era:Tunnel ; 
+  rdfs:label     "Tornehamn" ; 
+  era:lengthOfTunnel    "586.0"^^xsd:double ; 
+  era:inCountry     eu:SWE ; 
+  era:imCode     "0074" ; 
+  era:tunnelIdentification  "Tornehamn" ;
+  era:hasEmergencyPlan false .
+
+_:im1 rdf:type   era:InfrastructureManager ; 
+  foaf:nick   "TRAFIKVERKET" ; 
+  foaf:name    "Trafikverket" ; 
+  era:imCode   "0074" ; 
+  era:companyCodeCategory  ccc:infrastructure . 
+
+ccc:infrastructure rdf:type  skos:Concept ;   
+ skos:prefLabel "Infrastructure"@en ;   
+ skos:inScheme  ccc:CompanyCodeCategories .
+
+:wrong1 rdf:type    era:Tunnel ; 
+  rdfs:label     "Tornehamn" ; 
+  era:lengthOfTunnel    "-5.0"^^xsd:double ; 
+  era:inCountry     eu:SWE ; 
+  era:imCode     "20074" ; 
+  era:tunnelIdentification  "Tornehamn2" .
+
+:wrong2 rdf:type    era:Tunnel ; 
+  rdfs:label     "Tornehamn2" ; 
+  era:lengthOfTunnel    "5.0"^^xsd:double ; 
+  era:inCountry     eu:SWE ; 
+  era:imCode     "20074" ; 
+  era:tunnelIdentification  "Tornehamn2" .
+
+:ok rdf:type    era:Tunnel ; 
+  rdfs:label     "Another" ; 
+  era:lengthOfTunnel    "5.0"^^xsd:double ; 
+  era:inCountry     eu:ESP ; 
+  era:imCode     "AB74" ; 
+  era:tunnelIdentification  "Tornehamn2" ;
+  era:hasEmergencyPlan true .
+
